@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>q7</title>
+</head>
+<body>
+
+<button onclick="togglePara()">Show / Hide Paragraph</button>
+
+<p id="para">This paragraph can be shown or hidden.</p>
+
+<script>
+function togglePara() {
+    var p = document.getElementById("para");
+    if (p.style.display === "none") {
+        p.style.display = "block";
+    } else {
+        p.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>

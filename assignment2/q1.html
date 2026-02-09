@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>q1</title>
+    <script>
+        function check(event){
+            event.preventDefault();
+
+            let x = parseInt(document.getElementById("ab").value);
+            let result = document.getElementById("result");
+
+            if (isNaN(x)) {
+                result.innerText = "Please enter a valid number";
+            } 
+            else if (x % 2 !== 0) {
+                result.innerText = "Element is odd";
+            } 
+            else {
+                result.innerText = "Element is even";
+            }
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="check(event)">
+        <input type="text" id="ab" placeholder="enter a number">
+        <button type="submit">Check</button>
+    </form>
+
+    <p id="result"></p>
+</body>
+</html>

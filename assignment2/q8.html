@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>q8</title>
+</head>
+<body>
+
+<input type="text" id="name" placeholder="Enter your name">
+<button onclick="validate()">Submit</button>
+
+<p id="warning" style="color:red;"></p>
+
+<script>
+function validate() {
+    var text = document.getElementById("name").value;
+    
+    if (text === "") {
+        document.getElementById("warning").innerHTML = "  fill out the field!";
+    } else {
+        document.getElementById("warning").innerHTML = "";
+        alert("Input accepted!");
+    }
+}
+</script>
+
+</body>
+</html>

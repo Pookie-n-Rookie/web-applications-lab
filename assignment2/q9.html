@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>q9</title>
+</head>
+<body>
+
+<input type="number" id="n1" placeholder="Enter first number"><br><br>
+<input type="number" id="n2" placeholder="Enter second number"><br><br>
+<input type="number" id="n3" placeholder="Enter third number"><br><br>
+
+<button onclick="findLargest()">Find Largest</button>
+
+<p id="result"></p>
+
+<script>
+function findLargest() {
+    var a = Number(document.getElementById("n1").value);
+    var b = Number(document.getElementById("n2").value);
+    var c = Number(document.getElementById("n3").value);
+
+    var largest;
+
+    if (a >= b && a >= c) {
+        largest = a;
+    } else if (b >= a && b >= c) {
+        largest = b;
+    } else {
+        largest = c;
+    }
+
+    document.getElementById("result").innerHTML = 
+        "Largest number is: " + largest;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>q1</title>
+    <script>
+        function getpower(event){
+            event.preventDefault(); 
+
+            let x = parseInt(document.getElementById("ab").value);
+
+            document.getElementById("result").innerText =
+                "The cube of the number is " + (x*x*x) +
+                " and the square of the number is " + (x*x);
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="getpower(event)">
+        <input type="text" id="ab" placeholder="enter a number">
+        <button type="submit">Check</button>
+    </form>
+
+    <p id="result"></p>
+</body>
+</html>
