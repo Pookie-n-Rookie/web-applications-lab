@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h3>Question 3</h3>
+
+
+    <input type="number" id="num1" placeholder="Enter the first number :">
+    <input type="number" id="num2" placeholder="Enter the second number :">
+
+    <br><br>
+
+    <button onclick="add()">Add</button>
+    <button onclick="resetFields()">Reset</button>
+
+    <p id="result"></p>
+
+    <script>
+        function add() {
+            let x = Number(document.getElementById("num1").value);
+            let y = Number(document.getElementById("num2").value);
+            let sum = x + y;
+            document.getElementById("result").innerHTML =
+                "After addition the value is : " + sum;
+        }
+
+        function resetFields() {
+            document.getElementById("num1").value = "";
+            document.getElementById("num2").value = "";
+            document.getElementById("result").innerHTML = "";
+        }
+    </script>
+
+</body>
+
+</html>

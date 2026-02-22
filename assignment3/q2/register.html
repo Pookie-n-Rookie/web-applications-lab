@@ -4,22 +4,28 @@
     <title>Registration</title>
 </head>
 <body>
-    <center>
-        <h2 align="center">User Registration</h2>
-
-        <form>
-            Name: <input type="text"><br><br>
-            Email: <input type="email"><br><br>
-            Password: <input type="password"><br><br>
-            Gender:
-            <input type="radio" name="gender"> Male
-            <input type="radio" name="gender"> Female<br><br>
-            Address:<br>
-            <textarea rows="4" cols="30"></textarea><br><br>
-            <input type="submit" value="Register">
-            <input type="reset" value="Clear">
-        </form>
-    </center>
+    <h3>New User Registration</h3>
     
+    <form>
+        <label>Full Name:</label><br>
+        <input type="text" name="fullname"><br><br>
+
+        <label>Email ID:</label><br>
+        <input type="email" name="email"><br><br>
+
+        <label>Create Password:</label><br>
+        <input type="password" name="newpass"><br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" name="gen" value="M"> Male
+        <input type="radio" name="gen" value="F"> Female<br><br>
+
+        <label>Home Address:</label><br>
+        <textarea name="address" rows="3" cols="25"></textarea><br><br>
+
+        <input type="submit" value="Register">
+        <input type="reset" value="Reset Form">
+    </form>
+
 </body>
 </html>

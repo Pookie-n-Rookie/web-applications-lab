@@ -1,44 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Shopping Cart</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 12px; text-align: left; }
+        th { background-color: #e8f5e9; }
+        .total-row { font-weight: bold; background-color: #f1f8e9; }
+        .actions { margin-top: 20px; }
+        button { padding: 8px 15px; cursor: pointer; background-color: #4caf50; color: white; border: none; border-radius: 4px; margin-right: 10px;}
+        .btn-clear { background-color: #f44336; }
+    </style>
 </head>
 <body>
-    <center>
-        <h2>Your Cart</h2>
-
-        <table border="1" cellpadding="10">
+    <h2>Your Shopping Cart</h2>
+    
+    <table id="cartTable">
+        <thead>
             <tr>
                 <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
+                <th>Price (₹)</th>
             </tr>
-
-            <tr>
-                <td>Smartphone</td>
-                <td>1</td>
-                <td>₹15,000</td>
-                <td>₹15,000</td>
+        </thead>
+        <tbody id="cartBody">
+            </tbody>
+        <tfoot>
+            <tr class="total-row">
+                <td>Grand Total</td>
+                <td id="grandTotal">₹0</td>
             </tr>
+        </tfoot>
+    </table>
 
-            <tr>
-                <td>Headphones</td>
-                <td>2</td>
-                <td>₹1,500</td>
-                <td>₹3,000</td>
-            </tr>
+    <div class="actions">
+        <button onclick="checkout()">Checkout</button>
+        <button class="btn-clear" onclick="clearCart()">Empty Cart</button>
+    </div>
 
-            <tr>
-                <td colspan="3" align="right"><b>Grand Total</b></td>
-                <td>₹18,000</td>
-            </tr>
-        </table>
+    <script>
+    
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('plantCart')) || [];
+            let cartBody = document.getElementById('cartBody');
+            let total = 0;
+            
+            cartBody.innerHTML = ''; 
 
-        <br>
-        <input type="submit" value="Checkout">
-        <input type="button" value="Continue Shopping" onclick="window.location='products.html'">
-    </center>
+            if (cart.length === 0) {
+                cartBody.innerHTML = '<tr><td colspan="2">Your cart is currently empty.</td></tr>';
+            } else {
+                cart.forEach(item => {
+                    let row = `<tr><td>${item.name}</td><td>₹${item.price}</td></tr>`;
+                    cartBody.innerHTML += row;
+                    total += item.price;
+                });
+            }
+            document.getElementById('grandTotal').innerText = '₹' + total;
+        }
 
+        function clearCart() {
+            localStorage.removeItem('plantCart');
+            loadCart(); e
+        }
+
+        function checkout() {
+            let cart = JSON.parse(localStorage.getItem('plantCart')) || [];
+            if (cart.length === 0) {
+                alert("Please add items to your cart first!");
+            } else {
+                alert("Thank you for your purchase! Total amount: ₹" + document.getElementById('grandTotal').innerText.substring(1));
+                clearCart();
+            }
+        }
+        window.onload = loadCart;
+    </script>
 </body>
 </html>

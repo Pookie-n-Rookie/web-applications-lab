@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; }
+        .container { max-width: 300px; border: 1px solid #ccc; padding: 25px; border-radius: 5px; background-color: #fcfcfc;}
+        input[type="text"], input[type="password"] { width: 90%; padding: 8px; margin: 10px 0 20px 0; border: 1px solid #ccc;}
+        button { padding: 8px 15px; background-color: #4caf50; color: white; border: none; cursor: pointer; border-radius: 3px;}
+        .btn-reset { background-color: #757575; }
+    </style>
 </head>
 <body>
-    <center>
-        <h2>Login</h2>
-
+    <div class="container">
+        <h2>Account Login</h2>
         <form>
-            Username: <input type="text"><br><br>
-            Password: <input type="password"><br><br>
-            <input type="submit" value="Login">
-            <input type="reset" value="Reset">
+            <label>Email Address:</label><br>
+            <input type="text" name="email" required>
+            
+            <label>Password:</label><br>
+            <input type="password" name="password" required>
+            
+            <button type="submit">Sign In</button>
+            <button type="reset" class="btn-reset">Reset</button>
         </form>
-    </center>
+    </div>
 </body>
 </html>
