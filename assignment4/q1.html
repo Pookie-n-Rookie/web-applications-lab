@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Q1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        li {
+            margin: 5px 0;
+        }
+        button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Student List Manager</h2>
+    <input type="text" id="studentName" placeholder="Enter student name">
+    <button onclick="addStudent()">Add Student</button>
+    <h3>Total Students: <span id="total">0</span></h3>
+
+    <ul id="studentList"></ul>
+
+    <script>
+        const studentList = document.getElementById("studentList");
+        const totalDisplay = document.getElementById("total");
+
+        function addStudent() {
+            const nameInput = document.getElementById("studentName");
+            const studentName = nameInput.value.trim();
+
+            if (studentName === "") {
+                alert("Please enter a student name.");
+                return;
+            }
+
+            
+            const li = document.createElement("li");
+            li.textContent = studentName;
+
+             
+            const removeBtn = document.createElement("button");
+            removeBtn.textContent = "Remove";
+            removeBtn.onclick = function () {
+                studentList.removeChild(li);
+                updateTotal();
+            };
+
+            li.appendChild(removeBtn);
+            studentList.appendChild(li);
+            nameInput.value = "";
+            updateTotal();
+        }
+
+        function updateTotal() {
+            totalDisplay.textContent = studentList.children.length;
+        }
+    </script>
+</body>
+</html>

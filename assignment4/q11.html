@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Theme Toggle</title>
+    <style>
+        body.light { background: #fff; color: #000; }
+        body.dark { background: #222; color: #fff; }
+        button { padding: 10px 20px; margin: 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Dark / Light Theme Toggle</h2>
+    <button id="toggleBtn">Toggle Theme</button>
+
+    <script>
+        const body = document.body;
+        const toggleBtn = document.getElementById("toggleBtn");
+        const savedTheme = localStorage.getItem("theme") || "light";
+        body.classList.add(savedTheme);
+
+        toggleBtn.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            body.classList.toggle("light");
+            const currentTheme = body.classList.contains("dark") ? "dark" : "light";
+            localStorage.setItem("theme", currentTheme);
+        });
+    </script>
+</body>
+</html>

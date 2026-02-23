@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz App</title>
+    <style>
+        body { font-family: Arial; text-align: center; margin: 50px; }
+        .option { display: block; margin: 10px; }
+        #quizContainer { margin-bottom: 20px; }
+        #answers { margin-top: 20px; text-align: left; display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <h2>Quiz Application</h2>
+    <div id="quizContainer"></div>
+    <button id="nextBtn">Next</button>
+    <p id="score"></p>
+    <div id="answers"></div>
+
+    <script>
+        const quiz = [
+            { question: "What is sigmoid function?", options: ["sin(x)", "e^(-x)", "1+1/e", "1/(1+e^(-x))"], answer: "1/(1+e^(-x))" },
+            { question: "Capital of France?", options: ["Paris", "London", "Berlin", "Rome"], answer: "Paris" },
+            { question: "Which is a JS framework?", options: ["Django", "React", "Laravel", "Flask"], answer: "React" }
+        ];
+
+        let current = 0;
+        let score = 0;
+        const quizContainer = document.getElementById("quizContainer");
+        const scoreDisplay = document.getElementById("score");
+        const nextBtn = document.getElementById("nextBtn");
+        const answersDiv = document.getElementById("answers");
+
+        function loadQuestion() {
+            const q = quiz[current];
+            let html = `<h3>${q.question}</h3>`;
+            q.options.forEach(opt => {
+                html += `<label class="option"><input type="radio" name="option" value="${opt}"> ${opt}</label>`;
+            });
+            quizContainer.innerHTML = html;
+        }
+
+        loadQuestion();
+
+        nextBtn.addEventListener("click", () => {
+            const selected = document.querySelector('input[name="option"]:checked');
+            if (selected) {
+                if (selected.value === quiz[current].answer) score++;
+                current++;
+                if (current < quiz.length) {
+                    loadQuestion();
+                } else {
+           
+                    quizContainer.innerHTML = "<h3>Quiz Completed!</h3>";
+                    nextBtn.style.display = "none";
+                    scoreDisplay.textContent = `Your Score: ${score} / ${quiz.length}`;
+
+                   
+                    let answerHTML = "<h4>Correct Answers:</h4><ul>";
+                    quiz.forEach(q => {
+                        answerHTML += `<li>${q.question} → <strong>${q.answer}</strong></li>`;
+                    });
+                    answerHTML += "</ul>";
+                    answersDiv.innerHTML = answerHTML;
+                }
+            } else {
+                alert("Please select an answer!");
+            }
+        });
+    </script>
+
+</body>
+</html>

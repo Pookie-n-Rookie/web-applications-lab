@@ -1,0 +1,9 @@
+[
+    { "name": "Virat Kohli", "age": 20, "grade": "A" },
+    { "name": "Rohit Sharma", "age": 21, "grade": "B" },
+    { "name": "Jasprit Bumrah", "age": 22, "grade": "A" },
+    { "name": "Rishabh Pant", "age": 19, "grade": "B" },
+    { "name": "Hardik Pandya", "age": 23, "grade": "C" },
+    { "name": "Shreyas Iyer", "age": 20, "grade": "A" },
+    { "name": "Mohammed Shami", "age": 22, "grade": "B" }
+]

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .toggle-btn {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form onsubmit="return validateForm()">
+
+    <div class="form-group">
+        <label>Name:</label><br>
+        <input type="text" id="name">
+        <div id="nameError" class="error"></div>
+    </div>
+
+    <div class="form-group">
+        <label>Email:</label><br>
+        <input type="text" id="email">
+        <div id="emailError" class="error"></div>
+    </div>
+
+    <div class="form-group">
+        <label>Password:</label><br>
+        <input type="password" id="password">
+        <button type="button" class="toggle-btn" onclick="togglePassword('password')">Show</button>
+        <div id="passwordError" class="error"></div>
+    </div>
+
+    <div class="form-group">
+        <label>Confirm Password:</label><br>
+        <input type="password" id="confirmPassword">
+        <button type="button" class="toggle-btn" onclick="togglePassword('confirmPassword')">Show</button>
+        <div id="confirmError" class="error"></div>
+    </div>
+
+    <button type="submit">Register</button>
+
+    <div id="successMessage" class="success"></div>
+
+</form>
+
+<script>
+function validateForm() {
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const confirmError = document.getElementById("confirmError");
+    const successMessage = document.getElementById("successMessage");
+    nameError.textContent = "";
+    emailError.textContent = "";
+    passwordError.textContent = "";
+    confirmError.textContent = "";
+    successMessage.textContent = "";
+
+    let isValid = true;
+    if (name === "") {
+        nameError.textContent = "Name cannot be empty.";
+        isValid = false;
+    }
+
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.match(emailPattern)) {
+        emailError.textContent = "Enter a valid email address.";
+        isValid = false;
+    }
+
+    const passwordPattern = /^(?=.*[A-Z])(?=.*[0-9]).{6,}$/;
+    if (!password.match(passwordPattern)) {
+        passwordError.textContent =
+            "Password must contain at least 1 uppercase letter and 1 number (minimum 6 characters).";
+        isValid = false;
+    }
+
+    if (password !== confirmPassword) {
+        confirmError.textContent = "Passwords do not match.";
+        isValid = false;
+    }
+
+    if (isValid) {
+        successMessage.textContent = "Registration Successful ✅";
+    }
+
+    return false; 
+}
+
+
+function togglePassword(fieldId) {
+    const field = document.getElementById(fieldId);
+
+    if (field.type === "password") {
+        field.type = "text";
+    } else {
+        field.type = "password";
+    }
+}
+</script>
+
+</body>
+</html>

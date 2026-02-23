@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Table</title>
+    <style>
+        table { border-collapse: collapse; width: 50%; margin: 20px auto; }
+        th, td { border: 1px solid black; padding: 8px; text-align: center; }
+        input { display: block; margin: 20px auto; padding: 5px; width: 200px; }
+    </style>
+</head>
+<body>
+    <h2>Student List</h2>
+    <input type="text" id="search" placeholder="Search by name">
+    <table id="studentTable">
+        <thead>
+            <tr><th>Name</th><th>Age</th><th>Grade</th></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        let students = [];
+
+        async function loadStudents() {
+            const res = await fetch('student.json');
+            students = await res.json();
+            displayTable(students);
+        }
+
+        function displayTable(data) {
+            const tbody = document.querySelector("#studentTable tbody");
+            tbody.innerHTML = "";
+            data.forEach(s => {
+                tbody.innerHTML += `<tr><td>${s.name}</td><td>${s.age}</td><td>${s.grade}</td></tr>`;
+            });
+        }
+
+        document.getElementById("search").addEventListener("input", (e) => {
+            const filtered = students.filter(s => s.name.toLowerCase().includes(e.target.value.toLowerCase()));
+            displayTable(filtered);
+        });
+
+        loadStudents();
+    </script>
+</body>
+</html>
